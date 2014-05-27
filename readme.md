@@ -1,19 +1,16 @@
-2048-mini
+Boggle
 =====================
 
-A mini version of 2048 written in javascript using D3. And by mini, I just mean that it's really small and with no numbers (just color coded).
-
-![Screenshot](/screenshots/screenshot1.png?raw=true "Optional Title")
+A version of Boggle written in javascript using D3.
 
 Contributing
 =====================
 
 Feel free to play around with it if you want. And let me know what you like and don't like. You can also find me on twitter @adamCoder.
 
-Upcoming features
+To-do list
 
-- End the game if the board gets filled up
-- Say "You won!" if 2048 is reached
+- Add random letters to tiles
 
 Copyright
 =====================
