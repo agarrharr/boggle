@@ -38,7 +38,7 @@ var board = function() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  var getLetter = function(die, side) {\
+  var getLetter = function(die, side) {
     var dice = [
       ['A', 'A', 'E', 'E', 'G', 'N'],
       ['E', 'L', 'R', 'T', 'T', 'Y'],
