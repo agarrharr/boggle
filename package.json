@@ -1,0 +1,40 @@
+{
+  "name": "boggle",
+  "version": "1.0.0",
+  "description": "Boggle generator.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server --content-base dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agarrharr/boggle.git"
+  },
+  "keywords": [
+    "boggle"
+  ],
+  "author": "agarrharr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/agarrharr/boggle/issues"
+  },
+  "homepage": "https://github.com/agarrharr/boggle#readme",
+  "dependencies": {
+    "boggle-roll": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+  }
+}
