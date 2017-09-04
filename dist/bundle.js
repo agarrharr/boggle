@@ -9764,7 +9764,7 @@ var _BoggleBoard = __webpack_require__(184);
 
 var _BoggleBoard2 = _interopRequireDefault(_BoggleBoard);
 
-var _Timer = __webpack_require__(186);
+var _Timer = __webpack_require__(187);
 
 var _Timer2 = _interopRequireDefault(_Timer);
 
@@ -22534,7 +22534,9 @@ exports.default = BoggleBoard;
 "use strict";
 
 
-const defaultDie = [
+const arrayShuffle = __webpack_require__(186);
+
+const defaultDice = [
   ['A', 'A', 'E', 'E', 'G', 'N'],
   ['E', 'L', 'R', 'T', 'T', 'Y'],
   ['A', 'O', 'O', 'T', 'T', 'W'],
@@ -22555,11 +22557,12 @@ const defaultDie = [
 
 const randomNumber = max => Math.floor(Math.random() * max);
 
-const getRandom = dice => dice[randomNumber(dice.length)];
+const getRandom = die => die[randomNumber(die.length)];
 
-const boggleRoll = (die = defaultDie) => {
-  const boardSize = Math.floor(Math.sqrt(die.length));
-  return die.reduce((a, c, i) => {
+const boggleRoll = (dice = defaultDice) => {
+  const boardSize = Math.floor(Math.sqrt(dice.length));
+  const shuffled = arrayShuffle(dice);
+  return shuffled.reduce((a, c, i) => {
     if (a.length) {
       if (a[a.length - 1].length < boardSize) {
         a[a.length - 1].push(getRandom(c));
@@ -22572,11 +22575,38 @@ const boggleRoll = (die = defaultDie) => {
   }, []);
 };
 
-module.exports = die => boggleRoll(die);
+module.exports = dice => boggleRoll(dice);
 
 
 /***/ }),
 /* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = function (arr) {
+	if (!Array.isArray(arr)) {
+		throw new TypeError('Expected Array, got ' + typeof arr);
+	}
+
+	var rand;
+	var tmp;
+	var len = arr.length;
+	var ret = arr.slice();
+
+	while (len) {
+		rand = Math.floor(Math.random() * len--);
+		tmp = ret[len];
+		ret[len] = ret[rand];
+		ret[rand] = tmp;
+	}
+
+	return ret;
+};
+
+
+/***/ }),
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22618,9 +22648,14 @@ var getTimerMinutesAndSeconds = function getTimerMinutesAndSeconds(_ref) {
   var timer = totalSeconds - secondsElapsed;
   var minutes = Math.floor(timer / 60);
   var seconds = timer % 60;
+
+  if (secondsElapsed > totalSeconds) {
+    return { minutes: 0, seconds: 0 };
+  }
+
   return {
     minutes: minutes,
-    seconds: seconds < 10 ? '0' + seconds : seconds
+    seconds: seconds
   };
 };
 
@@ -22661,7 +22696,7 @@ var Timer = function (_React$Component) {
           currentTime = _state.currentTime;
 
       var _getTimerMinutesAndSe = getTimerMinutesAndSeconds({
-        totalMinutes: 3,
+        totalMinutes: 1,
         startTime: startTime,
         currentTime: currentTime
       }),
@@ -22670,10 +22705,13 @@ var Timer = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { style: styles.timer },
+        { style: Object.assign({}, styles.timer, {
+            color: minutes === 0 && seconds === 0 ? 'red' : 'inherit'
+          })
+        },
         minutes,
         ':',
-        seconds
+        seconds < 10 ? '0' + seconds : seconds
       );
     }
   }]);

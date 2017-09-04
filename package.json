@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/agarrharr/boggle#readme",
   "dependencies": {
-    "boggle-roll": "^1.0.0"
+    "boggle-roll": "^1.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
