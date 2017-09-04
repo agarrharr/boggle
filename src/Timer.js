@@ -2,6 +2,8 @@ import React from 'react'
 
 const styles = {
   timer: {
+    margin: '20px 0',
+    fontSize: 24,
   },
 }
 

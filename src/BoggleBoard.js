@@ -18,7 +18,7 @@ const styles = {
     height: 100,
     padding: 20,
     margin: 5,
-    fontSize: 20,
+    fontSize: 32,
     fontFamily: 'sans-serif',
     border: '1px solid #333333',
     borderRadius: 5,
