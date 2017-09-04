@@ -22696,7 +22696,7 @@ var Timer = function (_React$Component) {
           currentTime = _state.currentTime;
 
       var _getTimerMinutesAndSe = getTimerMinutesAndSeconds({
-        totalMinutes: 1,
+        totalMinutes: 3,
         startTime: startTime,
         currentTime: currentTime
       }),
