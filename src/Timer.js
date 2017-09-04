@@ -47,7 +47,7 @@ class Timer extends React.Component {
   render() {
     const {startTime, currentTime} = this.state
     const {minutes, seconds} = getTimerMinutesAndSeconds({
-      totalMinutes: 1,
+      totalMinutes: 3,
       startTime,
       currentTime,
     });
