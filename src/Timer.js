@@ -9,15 +9,20 @@ const styles = {
 
 
 const getTimerMinutesAndSeconds = ({totalMinutes, startTime, currentTime}) => {
-    const delta = currentTime - startTime
-    const secondsElapsed = Math.floor(delta / 1000)
-    const totalSeconds = totalMinutes * 60
-    const timer = totalSeconds - secondsElapsed
-    const minutes = Math.floor(timer / 60)
-    const seconds = timer % 60
+  const delta = currentTime - startTime
+  const secondsElapsed = Math.floor(delta / 1000)
+  const totalSeconds = totalMinutes * 60
+  const timer = totalSeconds - secondsElapsed
+  const minutes = Math.floor(timer / 60)
+  const seconds = timer % 60
+
+  if (secondsElapsed > totalSeconds) {
+    return { minutes: 0, seconds: 0}
+  }
+
   return {
     minutes,
-    seconds: seconds < 10 ? `0${seconds}` : seconds,
+    seconds,
   }
 };
 
@@ -42,13 +47,19 @@ class Timer extends React.Component {
   render() {
     const {startTime, currentTime} = this.state
     const {minutes, seconds} = getTimerMinutesAndSeconds({
-      totalMinutes: 3,
+      totalMinutes: 1,
       startTime,
       currentTime,
     });
     return (
-      <div style={styles.timer}>
-        {minutes}:{seconds}
+      <div style={Object.assign({},
+          styles.timer,
+          {
+            color: minutes === 0 && seconds === 0 ? 'red' : 'inherit',
+          }
+        )}
+      >
+        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
       </div>
     );
   }
